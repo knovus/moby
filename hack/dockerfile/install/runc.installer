@@ -24,6 +24,8 @@ install_runc() {
 	else
 		target="$1"
 	fi
+	export GOARCH='386'
+	export CGO_ENABLED=1
 	make BUILDTAGS="$RUNC_BUILDTAGS" "$target"
 	mkdir -p "${PREFIX}"
 	cp runc "${PREFIX}/runc"

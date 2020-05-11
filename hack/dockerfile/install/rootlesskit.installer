@@ -31,6 +31,8 @@ _install_rootlesskit() {
 	cd "$GOPATH/src/github.com/rootless-containers/rootlesskit"
 	git checkout -q "$ROOTLESSKIT_COMMIT"
 	for f in rootlesskit rootlesskit-docker-proxy; do
+		export GOARCH='386'
+		export CGO_ENABLED=1
 		go build $BUILD_MODE -ldflags="$ROOTLESSKIT_LDFLAGS" -o "${PREFIX}/$f" github.com/rootless-containers/rootlesskit/cmd/$f
 	done
 }

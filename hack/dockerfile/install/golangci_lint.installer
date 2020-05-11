@@ -11,7 +11,8 @@ install_golangci_lint() {
 	version="$(git describe --tags)"
 	commit="$(git rev-parse --short HEAD)"
 	commitDate="$(git show -s --format=%cd)"
-
+	export GOARCH='386'
+	export CGO_ENABLED=1
 	go build \
 		-buildmode=pie \
 		-ldflags "-s -w -X \"main.version=${version}\" -X \"main.commit=${commit}\" -X \"main.date=${commitDate}\"" \

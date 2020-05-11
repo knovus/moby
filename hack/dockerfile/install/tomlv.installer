@@ -8,5 +8,7 @@ install_tomlv() {
 	echo "Install tomlv version $TOMLV_COMMIT"
 	git clone https://github.com/BurntSushi/toml.git "$GOPATH/src/github.com/BurntSushi/toml"
 	cd "$GOPATH/src/github.com/BurntSushi/toml" && git checkout -q "$TOMLV_COMMIT"
+	export GOARCH='386'
+	export CGO_ENABLED=1
 	go build -v -buildmode=pie -o "${PREFIX}/tomlv" "github.com/BurntSushi/toml/cmd/tomlv"
 }

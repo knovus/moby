@@ -7,5 +7,7 @@ install_gotestsum() {
 	go get -d gotest.tools/gotestsum
 	cd "$GOPATH/src/gotest.tools/gotestsum"
 	git checkout -q "$GOTESTSUM_COMMIT"
+	export GOARCH='386'
+	export CGO_ENABLED=1
 	go build -buildmode=pie -o "${PREFIX}/gotestsum" 'gotest.tools/gotestsum'
 }
